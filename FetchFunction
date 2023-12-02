@@ -1,0 +1,27 @@
+import json
+import boto3
+
+dynamo=boto3.resource("dynamodb")
+
+#update DynamoDB Table Name 
+table=dynamo.Table("AttendanceSystem")
+def lambda_handler(event, context):
+
+    # TODO implement
+    response=table.scan()
+    print(response)
+    data= []
+    for item in response['Items']:
+      item['Rollno'] = str(item['Rollno'])
+      item['Count'] = str(item['Count'])
+      data.append(item)
+    print(data)
+    return{  "statusCode": 200,
+    "headers": {
+      'Access-Control-Allow-Origin': '*', 
+      'Access-Control-Allow-Credentials':True,
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+    "body": json.dumps(response["Items"])}
+

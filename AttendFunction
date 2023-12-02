@@ -1,0 +1,21 @@
+import json
+import boto3
+
+dynamo=boto3.resource("dynamodb")
+
+#update DynamoDB table name 
+table=dynamo.Table("AttendanceSystem")
+def lambda_handler(event, context):
+
+    # TODO implement
+    
+    # Data was not updated in dynamodb bccoz (queryStringParameter) was not not there..
+
+    res = table.get_item(Key={"Name": event['queryStringParameters']['Name']})
+    print(res['Item']['Name'])
+    Count = res['Item']['Count']
+    Count = Count + 1
+    inp = {"Rollno":res["Item"]['Rollno'],"Count":Count, "Name":res['Item']['Name']}
+    table.put_item(Item=inp)
+    return "Successful"
+    
