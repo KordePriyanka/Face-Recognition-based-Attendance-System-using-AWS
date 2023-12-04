@@ -8,8 +8,8 @@ import cv2
 
 #Credentials----------------------------------------------------------------------------------
 client = boto3.client('rekognition',
-                    aws_access_key_id="AKIAWAO3KXHWQAXPFSQZ",
-                    aws_secret_access_key="yh08nzmewJM+oqZAT0LLl9pQ8A5STtoZLpnVRmeE",
+                    aws_access_key_id="YOUR_ACCESS_KEY",
+                    aws_secret_access_key="YOUR_SECRET_ACCESS_KEY",
                     #aws_session_token="FwoGZXIvYXdzECEaDIYUDFobtJnX2oDJVCLBAYop3p7T11dVZL/rjE4nmQQNBQEgYMSXua9XMWaiSGT1v1Giv0j4Txt0883Mrmz4zAlN2RAfXPk4QK6MxHEuEamQ3U4AgrZ4qA4AVv+uvMuGLWmVPwqUk/uK61R/kE3cNN5Bs3qzWYOzZ22z1RB8IT8YDxS81Wz5tZT/rRBXEGODdV6oIR8LIYixYoyBfl3hPWxTpqS/IrOzTcFnFbuoLYZQvLH2IGzf087tsV2bL56CoX62V9eAbv8VORF1RlGowgIouvqB/AUyLXdmJoVk+HOLePDbLDlYvDU3e7po7lEVq9DW+Aa3vDoqnjqqCEy3WjQtPj8N5Q==",
                       region_name='ap-south-1')
 
@@ -45,8 +45,8 @@ for j in range(0, 6):
     del (camera) 
 
 #Send the captured image to AWS S3 Bucket--------------------------------------------------------------------------------------
-    clients3 = boto3.client('s3', aws_access_key_id="AKIAWAO3KXHWQAXPFSQZ",
-                      aws_secret_access_key="yh08nzmewJM+oqZAT0LLl9pQ8A5STtoZLpnVRmeE", region_name='ap-south-1')
+    clients3 = boto3.client('s3', aws_access_key_id="YOUR_ACCESS_KEY",
+                      aws_secret_access_key="YOUR_SECRET_ACCESS_KEY", region_name='ap-south-1')
     # clients3.upload_file("Hourly Class Images/"+current_time+'.jpg', 'add your S3 bucket name', current_time+'.jpg')
 
     clients3.upload_file("img/" + current_time + '.jpg', 'attendance-management-system', current_time + '.jpg')
